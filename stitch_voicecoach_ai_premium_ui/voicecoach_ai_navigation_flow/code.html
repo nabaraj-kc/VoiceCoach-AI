@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VoiceCoach AI - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#b4abff",
+                        "surface-bright": "#333948",
+                        "background": "#0B0F1A",
+                        "tertiary-fixed": "#ffddb7",
+                        "on-secondary-fixed-variant": "#4029ba",
+                        "tertiary": "#ffb95c",
+                        "on-surface-variant": "#c0c7d4",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#c6bfff",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-primary-fixed-variant": "#004881",
+                        "surface-variant": "#2f3544",
+                        "on-background": "#dde2f6",
+                        "surface-container": "#191f2e",
+                        "surface-tint": "#a2c9ff",
+                        "surface-container-highest": "#2f3544",
+                        "surface-container-low": "#151b29",
+                        "on-primary": "#00315b",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#4f3000",
+                        "outline-variant": "#404752",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error": "#690005",
+                        "secondary-container": "#4029ba",
+                        "surface-dim": "#0d1321",
+                        "surface": "#121826",
+                        "surface-container-lowest": "#080e1c",
+                        "outline": "#8a919d",
+                        "on-primary-container": "#003866",
+                        "on-secondary": "#2900a0",
+                        "primary-container": "#4da3ff",
+                        "on-primary-fixed": "#001c38",
+                        "inverse-on-surface": "#2a303f",
+                        "surface-container-high": "#242a39",
+                        "secondary-fixed": "#e4dfff",
+                        "primary": "#4DA3FF",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#462a00",
+                        "inverse-surface": "#dde2f6",
+                        "tertiary-fixed-dim": "#ffb95c",
+                        "on-surface": "#dde2f6",
+                        "on-secondary-fixed": "#160066",
+                        "primary-fixed": "#d3e4ff",
+                        "secondary-fixed-dim": "#c6bfff",
+                        "tertiary-container": "#de8f00",
+                        "inverse-primary": "#0060a9",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "accent-purple": "#6C5CE7",
+                        "success": "#34D399",
+                        "streak": "#FF7A00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-lg": "40px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px",
+                        "base": "8px",
+                        "container-padding": "24px",
+                        "pb-safe": "env(safe-area-inset-bottom, 24px)"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-score": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-score": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #0B0F1A; }
+        .glass-card {
+            background-color: #121826;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            filter: drop-shadow(0 0 12px rgba(77, 163, 255, 0.4));
+        }
+        .glow-shadow {
+            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.25);
+        }
+        
+        /* Staggered Animation Classes */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface font-body-md antialiased pb-[100px]">
+<!-- TopAppBar from JSON -->
+<header class="bg-[#0B0F1A]/80 backdrop-blur-xl text-primary docked full-width top-0 sticky z-40 border-b border-white/5 flat no shadows flex justify-between items-center w-full px-container-padding py-stack-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-white/10">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A close-up headshot of a confident professional man against a dark, moody background. The lighting is cinematic, highlighting his determined expression. This portrait sits perfectly within a modern, dark-mode corporate UI, complementing the deep navy and sleek primary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk4WLJk5gQ6i2KC5hAMbQZweR9TIYDH3lt2QyFx-XmTq-Agncf0enKovceagsCnIF3xPVQ6es9v7wodJZWimtUKROI6LLPluD4LzclMLMYS3yEL689BpaO6iohpgXSjlLUtP4jjDhoHeGMgsSNxX9g_m0ZoZhuZXh1DvxpMwdeIsGF8nLb4j8XZm80Rfx1nr6o6DAHPz7KFrHcOAgsIyqMfahNOKqsDpwGr8veSPU9tiFCuQaskNc4aU0aHqQwmiaPG0hCHoT-SY0"/>
+</div>
+<h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">VoiceCoach AI</h1>
+</div>
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-100 flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+</header>
+<main class="px-container-padding pt-stack-md flex flex-col gap-stack-md max-w-lg mx-auto w-full">
+<!-- Main Circular Progress -->
+<section class="flex flex-col items-center justify-center py-stack-lg stagger-item delay-1">
+<div class="relative w-64 h-64 flex items-center justify-center">
+<svg class="w-full h-full absolute inset-0 drop-shadow-2xl" viewbox="0 0 100 100">
+<!-- Background circle -->
+<circle class="text-white/[0.05] stroke-current" cx="50" cy="50" fill="transparent" r="45" stroke-width="3"></circle>
+<!-- Progress circle -->
+<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="45" stroke-dasharray="283" stroke-dashoffset="283" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<div class="flex flex-col items-center z-10 text-center mt-2">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-[0.1em] mb-1">Speaking Score</span>
+<span class="text-display-score font-display-score text-white tabular-nums tracking-tighter leading-none" id="score-value">0</span>
+<div class="mt-3 px-3 py-1 rounded-full bg-success/15 border border-success/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-success">trending_up</span>
+<span class="text-[12px] font-medium text-success">+2 pts from last week</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout for Stats -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Streak Card -->
+<div class="glass-card rounded-2xl p-4 flex flex-col justify-between items-start min-h-[140px] stagger-item delay-2">
+<div class="flex items-center gap-2 mb-2 w-full justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-streak/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-streak text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="text-label-md font-semibold text-on-surface">12 Day Streak</span>
+</div>
+</div>
+<div class="flex justify-between w-full mt-auto pt-4 border-t border-white/5">
+<div class="flex flex-col items-center gap-1.5"><span class="text-[10px] text-on-surface-variant">M</span><div class="w-2.5 h-6 rounded-full bg-streak shadow-[0_0_8px_rgba(255,122,0,0.5)]"></div></div>
+<div class="flex flex-col items-center gap-1.5"><span class="text-[10px] text-on-surface-variant">T</span><div class="w-2.5 h-6 rounded-full bg-streak shadow-[0_0_8px_rgba(255,122,0,0.5)]"></div></div>
+<div class="flex flex-col items-center gap-1.5"><span class="text-[10px] text-on-surface-variant">W</span><div class="w-2.5 h-6 rounded-full bg-streak shadow-[0_0_8px_rgba(255,122,0,0.5)]"></div></div>
+<div class="flex flex-col items-center gap-1.5"><span class="text-[10px] text-on-surface-variant">T</span><div class="w-2.5 h-6 rounded-full bg-streak shadow-[0_0_8px_rgba(255,122,0,0.5)]"></div></div>
+<div class="flex flex-col items-center gap-1.5"><span class="text-[10px] text-white font-medium">F</span><div class="w-2.5 h-6 rounded-full bg-streak shadow-[0_0_8px_rgba(255,122,0,0.5)]"></div></div>
+<div class="flex flex-col items-center gap-1.5"><span class="text-[10px] text-on-surface-variant">S</span><div class="w-2.5 h-6 rounded-full bg-white/10"></div></div>
+<div class="flex flex-col items-center gap-1.5"><span class="text-[10px] text-on-surface-variant">S</span><div class="w-2.5 h-6 rounded-full bg-white/10"></div></div>
+</div>
+</div>
+<!-- Insight Card -->
+<div class="glass-card rounded-2xl p-4 flex flex-col justify-between items-start min-h-[140px] stagger-item delay-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary text-sm">speed</span>
+</div>
+<div class="flex-grow flex flex-col justify-end w-full">
+<p class="text-[13px] text-on-surface-variant leading-snug mb-3">You spoke <strong class="text-white font-semibold">12% faster</strong> than yesterday.</p>
+<!-- Sparkline placeholder -->
+<div class="w-full h-8 relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 20">
+<path class="text-primary" d="M0,15 Q20,15 30,10 T60,12 T100,5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path class="text-primary/10" d="M0,15 Q20,15 30,10 T60,12 T100,5 L100,20 L0,20 Z" fill="currentColor"></path>
+<circle class="fill-primary" cx="100" cy="5" r="2"></circle>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- Today's Practice Status -->
+<section class="glass-card rounded-2xl p-5 flex flex-col gap-4 stagger-item delay-4">
+<div class="flex items-center justify-between w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">mic_none</span>
+</div>
+<div>
+<h3 class="text-[15px] text-white font-semibold leading-tight">Today's Practice</h3>
+<p class="text-[12px] text-on-surface-variant mt-0.5">0 / 15 mins completed</p>
+</div>
+</div>
+</div>
+<div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+<div class="w-[5%] h-full bg-primary rounded-full" style="transition: width 1s ease-out"></div>
+</div>
+</section>
+<!-- Primary CTA -->
+<section class="pt-stack-sm pb-stack-lg stagger-item delay-4">
+<button class="w-full bg-gradient-to-r from-primary to-accent-purple text-white text-[16px] font-semibold py-4 rounded-2xl flex items-center justify-center gap-2 glow-shadow hover:opacity-90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                Start Speaking Session
+            </button>
+</section>
+</main>
+<!-- BottomNavBar from JSON -->
+<nav class="bg-[#121826]/90 backdrop-blur-2xl fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.2)] md:hidden">
+<div class="flex justify-around items-center px-4 pt-2 pb-safe">
+<!-- Active Item: Home -->
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-xl px-4 py-1.5 hover:text-primary-fixed-dim transition-colors active:scale-90 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-medium mt-1">Home</span>
+</a>
+<!-- Inactive Item: Record -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:text-white transition-colors active:scale-90 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[22px]">mic</span>
+<span class="text-[10px] font-medium mt-1">Record</span>
+</a>
+<!-- Inactive Item: Coach -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:text-white transition-colors active:scale-90 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[22px]">psychology</span>
+<span class="text-[10px] font-medium mt-1">Coach</span>
+</a>
+<!-- Inactive Item: Stats -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:text-white transition-colors active:scale-90 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[22px]">leaderboard</span>
+<span class="text-[10px] font-medium mt-1">Stats</span>
+</a>
+</div>
+</nav>
+<!-- Desktop Sidebar replacement for BottomNav (Hidden on Mobile) -->
+<nav class="hidden md:flex flex-col w-24 bg-[#121826]/80 border-r border-white/5 fixed left-0 top-0 h-full z-30 pt-24 items-center gap-8">
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-2xl p-3 w-16 hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 w-16 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-3xl">mic</span>
+<span class="text-label-sm font-label-sm mt-1">Record</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 w-16 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+<span class="text-label-sm font-label-sm mt-1">Coach</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 w-16 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-3xl">leaderboard</span>
+<span class="text-label-sm font-label-sm mt-1">Stats</span>
+</a>
+</nav>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Animate SVG Ring
+            setTimeout(() => {
+                const circle = document.querySelector('.progress-ring__circle');
+                if(circle) {
+                    // 84% of 283 is ~237.72. Offset = 283 - 237.72 = 45.28
+                    circle.style.strokeDashoffset = '45';
+                }
+            }, 100);
+
+            // Animate Number Counter
+            const scoreElement = document.getElementById('score-value');
+            if(scoreElement) {
+                let current = 0;
+                const target = 84;
+                const duration = 1500; // ms
+                const interval = 20; // ms
+                const step = target / (duration / interval);
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if(current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    scoreElement.innerText = Math.round(current);
+                }, interval);
+            }
+        });
+    </script>
+</body></html>

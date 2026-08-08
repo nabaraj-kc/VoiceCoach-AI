@@ -1,0 +1,31 @@
+# Flutter & Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugin-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Android & iOS Outputs
+android/app/debug/
+android/app/profile/
+android/app/release/
+ios/Pods/
+ios/Runner.xcworkspace/
+*.apk
+*.aab
+*.ipa
+
+# IDE & Log Files
+.idea/
+*.iml
+.vscode/
+*.log
+flutter_run.err.log
+flutter_run.out.log
+
+# Environment & Keys
+.env
+*.pem
+*.keystore

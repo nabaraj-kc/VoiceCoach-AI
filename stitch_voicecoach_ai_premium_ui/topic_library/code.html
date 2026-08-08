@@ -1,0 +1,312 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>VoiceCoach AI - Topic Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#0d1321",
+                      "secondary-fixed-dim": "#c6bfff",
+                      "primary-container": "#4da3ff",
+                      "secondary-fixed": "#e4dfff",
+                      "error-container": "#93000a",
+                      "on-secondary-fixed": "#160066",
+                      "on-primary": "#00315b",
+                      "on-primary-container": "#003866",
+                      "surface-tint": "#a2c9ff",
+                      "tertiary": "#ffb95c",
+                      "on-surface": "#dde2f6",
+                      "inverse-primary": "#0060a9",
+                      "surface-bright": "#333948",
+                      "on-primary-fixed": "#001c38",
+                      "on-error": "#690005",
+                      "surface-variant": "#2f3544",
+                      "surface-container-highest": "#2f3544",
+                      "tertiary-fixed-dim": "#ffb95c",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "on-background": "#dde2f6",
+                      "on-secondary-fixed-variant": "#4029ba",
+                      "surface-container-low": "#151b29",
+                      "on-tertiary": "#462a00",
+                      "surface-container-high": "#242a39",
+                      "surface": "#0d1321",
+                      "secondary": "#c6bfff",
+                      "inverse-surface": "#dde2f6",
+                      "error": "#ffb4ab",
+                      "secondary-container": "#4029ba",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed": "#d3e4ff",
+                      "on-primary-fixed-variant": "#004881",
+                      "primary-fixed-dim": "#a2c9ff",
+                      "surface-container-lowest": "#080e1c",
+                      "outline": "#8a919d",
+                      "on-secondary-container": "#b4abff",
+                      "tertiary-container": "#de8f00",
+                      "on-secondary": "#2900a0",
+                      "surface-container": "#191f2e",
+                      "inverse-on-surface": "#2a303f",
+                      "outline-variant": "#404752",
+                      "primary": "#a2c9ff",
+                      "on-surface-variant": "#c0c7d4",
+                      "on-tertiary-container": "#4f3000",
+                      "on-tertiary-fixed": "#2a1700",
+                      "background": "#0d1321",
+                      "tertiary-fixed": "#ffddb7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "stack-sm": "12px",
+                      "container-padding": "24px",
+                      "base": "8px",
+                      "stack-md": "24px",
+                      "stack-lg": "40px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "display-score": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-score": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-card {
+            background: rgba(18, 24, 38, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-input {
+            background: #080B12;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-input:focus-within {
+            box-shadow: 0 0 0 2px #4DA3FF;
+            border-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased pb-24 md:pb-0 pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface/70 backdrop-blur-xl border-b border-white/5 shadow-sm">
+<div class="flex justify-between items-center px-gutter h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-white/10 shrink-0">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkzU9UyrYT6xvzTJmfQO3FD5YwFMU6g1KuCJhT126hJ4afSNUukiuM9H9QvFB8JvceHs7ywa8407MDbq7WB5Fg2g75EkmvMIIKnaxVxFqmaVE00gzy66mLG2Luasrtgmut4pfFqaQtl-0pm9l11TvbcHmphejEqzoUAePlkl1F15M0hOfuYDjZl-BjXSV7l0uhQY6rnC8chZfB1N96ZBRJl_OrvkJ8h5gZjl_KW7xYua5xyfr4m_IIR0mBQ5ceXAgEEWpoUs4gFzY">
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">VoiceCoach AI</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant hover:opacity-80 transition-opacity font-label-md text-label-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:opacity-80 transition-opacity font-label-md text-label-md" href="#">Record</a>
+<a class="text-primary font-bold hover:opacity-80 transition-opacity font-label-md text-label-md border-b-2 border-primary pb-1" href="#">Coach</a>
+<a class="text-on-surface-variant hover:opacity-80 transition-opacity font-label-md text-label-md" href="#">Stats</a>
+</nav>
+<button aria-label="settings" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors text-on-surface-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-gutter py-stack-md flex flex-col gap-stack-lg">
+<!-- Header & Search -->
+<section class="flex flex-col gap-stack-sm pt-4">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">Explore Scenarios</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Find the perfect coaching module for your next presentation.</p>
+</div>
+<div class="glass-input rounded-xl flex items-center px-4 py-3 mt-4 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">search</span>
+<input class="bg-transparent border-none outline-none w-full text-on-background font-body-md placeholder:text-on-surface-variant/50 focus:ring-0 p-0" placeholder="Search practice scenarios..." type="text">
+</div>
+</section>
+<!-- Featured Carousel -->
+<section class="flex flex-col gap-stack-sm">
+<h3 class="font-headline-md text-headline-md text-on-background">Featured Tracks</h3>
+<div class="flex overflow-x-auto gap-4 no-scrollbar pb-4 -mx-gutter px-gutter snap-x">
+<!-- Card 1 -->
+<div class="snap-start shrink-0 w-72 glass-card rounded-2xl p-container-padding flex flex-col gap-4 relative overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">elevator</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-background text-[20px] mb-1">Elevator Pitch</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Nail your 30-second intro with clarity and confidence.</p>
+</div>
+<div class="mt-auto flex items-center gap-2 text-primary font-label-sm text-label-sm pt-4">
+<span class="material-symbols-outlined text-[16px]">play_circle</span>
+<span>Start Session</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-start shrink-0 w-72 glass-card rounded-2xl p-container-padding flex flex-col gap-4 relative overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-background text-[20px] mb-1">Salary Negotiation</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Practice assertive pacing and confident tone delivery.</p>
+</div>
+<div class="mt-auto flex items-center gap-2 text-secondary font-label-sm text-label-sm pt-4">
+<span class="material-symbols-outlined text-[16px]">play_circle</span>
+<span>Start Session</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-start shrink-0 w-72 glass-card rounded-2xl p-container-padding flex flex-col gap-4 relative overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary/20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary border border-tertiary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">campaign</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-background text-[20px] mb-1">Keynote Opening</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Hook your audience in the first 60 seconds.</p>
+</div>
+<div class="mt-auto flex items-center gap-2 text-tertiary font-label-sm text-label-sm pt-4">
+<span class="material-symbols-outlined text-[16px]">play_circle</span>
+<span>Start Session</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="flex flex-col gap-stack-sm pb-8">
+<h3 class="font-headline-md text-headline-md text-on-background">Topic Categories</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Category 1 -->
+<div class="glass-card rounded-2xl p-container-padding flex gap-4 items-start cursor-pointer hover:bg-surface-container-high transition-colors group">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-white/5 group-hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">business_center</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-[18px] text-on-background flex items-center justify-between">
+                            Business &amp; Leadership
+                            <span class="material-symbols-outlined text-on-surface-variant text-[20px] group-hover:text-primary transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 duration-300">chevron_right</span>
+</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1 mb-3">Board presentations, team updates, and stakeholder meetings.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Product Demo</span>
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Q3 Review</span>
+</div>
+</div>
+</div>
+<!-- Category 2 -->
+<div class="glass-card rounded-2xl p-container-padding flex gap-4 items-start cursor-pointer hover:bg-surface-container-high transition-colors group">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-white/5 group-hover:border-secondary/50 transition-colors">
+<span class="material-symbols-outlined text-secondary text-[28px]">groups</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-[18px] text-on-background flex items-center justify-between">
+                            Social &amp; Networking
+                            <span class="material-symbols-outlined text-on-surface-variant text-[20px] group-hover:text-secondary transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 duration-300">chevron_right</span>
+</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1 mb-3">Casual intros, mixer conversations, and icebreakers.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Casual Intro</span>
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Small Talk</span>
+</div>
+</div>
+</div>
+<!-- Category 3 -->
+<div class="glass-card rounded-2xl p-container-padding flex gap-4 items-start cursor-pointer hover:bg-surface-container-high transition-colors group">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-white/5 group-hover:border-tertiary/50 transition-colors">
+<span class="material-symbols-outlined text-tertiary text-[28px]">podium</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-[18px] text-on-background flex items-center justify-between">
+                            Public Speaking
+                            <span class="material-symbols-outlined text-on-surface-variant text-[20px] group-hover:text-tertiary transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 duration-300">chevron_right</span>
+</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1 mb-3">Keynotes, conference talks, and panel discussions.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Keynote Speech</span>
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">TED Style</span>
+</div>
+</div>
+</div>
+<!-- Category 4 -->
+<div class="glass-card rounded-2xl p-container-padding flex gap-4 items-start cursor-pointer hover:bg-surface-container-high transition-colors group">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-white/5 group-hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">forum</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-[18px] text-on-background flex items-center justify-between">
+                            Interviews
+                            <span class="material-symbols-outlined text-on-surface-variant text-[20px] group-hover:text-primary transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 duration-300">chevron_right</span>
+</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1 mb-3">Job interviews, media appearances, and Q&amp;A sessions.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Behavioral Qs</span>
+<span class="px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Tech Screen</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container/80 dark:bg-surface-container/80 backdrop-blur-xl fixed bottom-0 w-full z-50 rounded-t-xl border-t border-white/10 shadow-[0_-4px_12px_rgba(77,163,255,0.05)]">
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center py-base px-gutter pb-[calc(8px+env(safe-area-inset-bottom))]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">mic</span>
+<span class="font-label-sm text-label-sm">Record</span>
+</a>
+<!-- Active State -->
+<a class="flex flex-col items-center justify-center text-primary font-bold hover:text-primary/80 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-sm text-label-sm">Coach</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">leaderboard</span>
+<span class="font-label-sm text-label-sm">Stats</span>
+</a>
+</div>
+</nav>
+</body></html>

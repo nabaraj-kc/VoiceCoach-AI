@@ -1,0 +1,361 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>VoiceCoach AI - Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#b4abff",
+                        "surface-bright": "#333948",
+                        "background": "#0d1321",
+                        "tertiary-fixed": "#ffddb7",
+                        "on-secondary-fixed-variant": "#4029ba",
+                        "tertiary": "#ffb95c",
+                        "on-surface-variant": "#c0c7d4",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#c6bfff",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-primary-fixed-variant": "#004881",
+                        "surface-variant": "#2f3544",
+                        "on-background": "#dde2f6",
+                        "surface-container": "#191f2e",
+                        "surface-tint": "#a2c9ff",
+                        "surface-container-highest": "#2f3544",
+                        "surface-container-low": "#151b29",
+                        "on-primary": "#00315b",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#4f3000",
+                        "outline-variant": "#404752",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error": "#690005",
+                        "secondary-container": "#4029ba",
+                        "surface-dim": "#0d1321",
+                        "surface": "#0d1321",
+                        "surface-container-lowest": "#080e1c",
+                        "outline": "#8a919d",
+                        "on-primary-container": "#003866",
+                        "on-secondary": "#2900a0",
+                        "primary-container": "#4da3ff",
+                        "on-primary-fixed": "#001c38",
+                        "inverse-on-surface": "#2a303f",
+                        "surface-container-high": "#242a39",
+                        "secondary-fixed": "#e4dfff",
+                        "primary": "#a2c9ff",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#462a00",
+                        "inverse-surface": "#dde2f6",
+                        "tertiary-fixed-dim": "#ffb95c",
+                        "on-surface": "#dde2f6",
+                        "on-secondary-fixed": "#160066",
+                        "primary-fixed": "#d3e4ff",
+                        "secondary-fixed-dim": "#c6bfff",
+                        "tertiary-container": "#de8f00",
+                        "inverse-primary": "#0060a9",
+                        "on-tertiary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-lg": "40px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px",
+                        "base": "8px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-score": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-score": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0d1321; /* fallback */
+            color: #dde2f6; /* fallback */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-[90px] md:pb-0">
+<!-- TopAppBar (Hidden on mobile based on logic if this is a subpage, but user wants dashboard vibe, let's include it as a standard header for this app) -->
+<header class="hidden md:flex flex-col bg-surface/70 dark:bg-surface/70 backdrop-blur-xl docked full-width top-0 sticky z-40 border-b border-white/10 flat no shadows px-container-padding py-stack-sm">
+<div class="flex justify-between items-center w-full">
+<div class="flex items-center gap-4">
+<img alt="User Avatar" class="w-10 h-10 rounded-full border border-white/10" data-alt="A professional close up headshot of a confident professional user avatar in a modern minimalist setting. Dark blue background. High quality lighting. Modern corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpROJvvCAf79Y1iI6nJxG3FVoyPTW5KljzcyS43p2dMLArBDpv2v-sgTo4rOSnZ-OrY1KiR7aPzwa1y7PRVFsFRq-z0l3MbFcZUxYElnw7aJ-TCz77AQ4i51iozXtotyv_Nr61vNodrOUF7Gokc3PPmUGeHSq1oafKHYmv1vAYnuU_MH-jH7FFvrYkqYh5u4rzwSs_L0sYtjV8BLUDUYYiVip-XxYvTKwrYUKfyZRQ5WaJAXU8yoRGSaKplO390dXpVNfTy9APrYc">
+<span class="text-headline-md font-headline-md text-on-surface dark:text-on-surface tracking-tight">VoiceCoach AI</span>
+</div>
+<nav class="flex gap-8">
+<a class="text-on-surface-variant text-label-md font-label-md hover:opacity-80 transition-opacity" href="#">Home</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:opacity-80 transition-opacity" href="#">Record</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:opacity-80 transition-opacity" href="#">Coach</a>
+<a class="text-primary font-bold text-label-md font-label-md hover:opacity-80 transition-opacity flex flex-col items-center" href="#">
+                    Stats
+                    <div class="w-1 h-1 bg-primary rounded-full mt-1"></div>
+</a>
+</nav>
+<button class="text-primary dark:text-primary hover:opacity-80 transition-opacity active:scale-95 duration-100 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</div>
+</header>
+<!-- Mobile Header (Simplified) -->
+<header class="md:hidden flex justify-between items-center px-container-padding py-stack-md bg-surface/70 backdrop-blur-xl sticky top-0 z-40">
+<h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">Analysis</h1>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<main class="max-w-7xl mx-auto px-container-padding py-stack-md space-y-stack-md md:space-y-stack-lg">
+<!-- Top Section: Bento Grid for Score & Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Overall Score Card -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10 flex flex-col justify-center items-center relative overflow-hidden shadow-[0_8px_32px_rgba(77,163,255,0.05)] col-span-1 md:col-span-1 min-h-[250px]">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent pointer-events-none"></div>
+<h2 class="text-label-md font-label-md text-on-surface-variant mb-base absolute top-container-padding left-container-padding">Speaking Score</h2>
+<div class="relative flex items-center justify-center mt-stack-sm">
+<!-- Progress Ring -->
+<svg class="w-40 h-40 transform -rotate-90" viewBox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#2f3544" stroke-width="4"></circle>
+<circle class="transition-all duration-1000 ease-out" cx="50" cy="50" fill="none" r="45" stroke="#4da3ff" stroke-dasharray="282.7" stroke-dashoffset="22.6" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-display-score font-display-score text-primary">92</span>
+</div>
+</div>
+<div class="mt-stack-sm text-label-sm font-label-sm text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                    +4 pts vs last session
+                </div>
+</div>
+<!-- AI Summary Card -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10 flex flex-col shadow-[0_8px_32px_rgba(77,163,255,0.05)] col-span-1 md:col-span-2 relative">
+<div class="flex items-start justify-between mb-stack-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h2 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">AI Executive Summary</h2>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant bg-surface-variant px-2 py-1 rounded">Session: Q3 Update</span>
+</div>
+<p class="text-headline-md font-headline-md text-on-surface mt-base leading-snug">
+                    "You sound confident and authoritative, but need to aggressively reduce filler words to maintain professional impact."
+                </p>
+<div class="mt-auto pt-stack-sm flex gap-4">
+<button class="bg-primary text-on-primary text-label-md font-label-md px-6 py-2 rounded-lg hover:bg-primary-fixed transition-colors flex items-center gap-2 font-semibold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        Review Audio
+                    </button>
+<button class="bg-transparent border border-white/10 text-on-surface text-label-md font-label-md px-6 py-2 rounded-lg hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">share</span>
+                        Export
+                    </button>
+</div>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-stack-sm md:gap-stack-md">
+<!-- Filler Words -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Filler Words</span>
+<span class="material-symbols-outlined text-error text-sm">warning</span>
+</div>
+<div class="text-headline-lg font-headline-lg md:text-headline-lg text-on-surface mb-1">4</div>
+<div class="text-label-sm font-label-sm text-error">Above target (max 2)</div>
+</div>
+<!-- WPM -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Pacing (WPM)</span>
+<span class="material-symbols-outlined text-primary text-sm">speed</span>
+</div>
+<div class="text-headline-lg font-headline-lg md:text-headline-lg text-on-surface mb-1">145</div>
+<div class="text-label-sm font-label-sm text-outline">Optimal speed</div>
+</div>
+<!-- Pause Freq -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Pause Frequency</span>
+<span class="material-symbols-outlined text-tertiary text-sm">pause_circle</span>
+</div>
+<div class="text-headline-lg font-headline-lg md:text-headline-lg text-on-surface mb-1">Low</div>
+<div class="text-label-sm font-label-sm text-tertiary">Needs more dramatic pauses</div>
+</div>
+<!-- Clarity -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Clarity Score</span>
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+</div>
+<div class="text-headline-lg font-headline-lg md:text-headline-lg text-on-surface mb-1">95%</div>
+<div class="text-label-sm font-label-sm text-secondary">Excellent enunciation</div>
+</div>
+</div>
+<!-- Waveform Visualization -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="text-body-lg font-body-lg text-on-surface font-semibold">Session Playback</h3>
+<span class="text-label-sm font-label-sm text-on-surface-variant">02:14 total duration</span>
+</div>
+<div class="relative h-24 flex items-center justify-between gap-1 w-full opacity-80" id="waveform-container">
+<!-- Generating dummy waveform bars -->
+<script>
+                    const container = document.getElementById('waveform-container');
+                    const bars = 80;
+                    for(let i=0; i<bars; i++) {
+                        const h = Math.random() * 80 + 10;
+                        const isFiller = (i === 15 || i === 34 || i === 50 || i === 72);
+                        const colorClass = isFiller ? 'bg-error shadow-[0_0_8px_rgba(255,180,171,0.5)]' : 'bg-outline-variant';
+                        const heightClass = isFiller ? 'h-full' : `h-[${h}%]`; // Note: dynamic h-[] might not work well with Tailwind CDN in real-time, using inline style for height reliability in dummy code
+                        container.innerHTML += `<div class="w-1.5 rounded-full ${colorClass} transition-all duration-300 hover:bg-primary" style="height: ${h}%"></div>`;
+                    }
+                </script>
+<!-- Playhead -->
+<div class="absolute left-1/3 top-0 bottom-0 w-px bg-primary shadow-[0_0_10px_rgba(77,163,255,0.8)] z-10 flex flex-col items-center">
+<div class="w-3 h-3 bg-primary rounded-full -mt-1.5 shadow-lg"></div>
+</div>
+</div>
+<div class="flex justify-between mt-stack-sm text-label-sm font-label-sm text-on-surface-variant">
+<span>00:00</span>
+<span>02:14</span>
+</div>
+<!-- Timeline markers legend -->
+<div class="flex items-center gap-4 mt-stack-md pt-stack-sm border-t border-white/5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Filler Word Detected</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Normal Speech</span>
+</div>
+</div>
+</div>
+<!-- Feedback & Drills -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Breakdown -->
+<div class="space-y-stack-md">
+<!-- Strengths -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10">
+<h3 class="text-body-lg font-body-lg text-on-surface font-semibold flex items-center gap-2 mb-stack-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                        Key Strengths
+                    </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 pb-3 border-b border-white/5 last:border-0 last:pb-0">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">check</span>
+<p class="text-body-md font-body-md text-on-surface-variant">Strong authoritative tone maintained throughout the introduction.</p>
+</li>
+<li class="flex items-start gap-3 pb-3 border-b border-white/5 last:border-0 last:pb-0">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">check</span>
+<p class="text-body-md font-body-md text-on-surface-variant">Excellent volume projection, consistently hitting the 75dB target.</p>
+</li>
+<li class="flex items-start gap-3 pb-3 border-b border-white/5 last:border-0 last:pb-0">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">check</span>
+<p class="text-body-md font-body-md text-on-surface-variant">Clear articulation on complex industry terminology.</p>
+</li>
+</ul>
+</div>
+<!-- Improvements -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-white/10">
+<h3 class="text-body-lg font-body-lg text-on-surface font-semibold flex items-center gap-2 mb-stack-sm">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                        Areas for Improvement
+                    </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 pb-3 border-b border-white/5 last:border-0 last:pb-0">
+<span class="material-symbols-outlined text-tertiary text-sm mt-0.5">priority_high</span>
+<p class="text-body-md font-body-md text-on-surface-variant">Over-reliance on "um" and "like" during transition sentences (1:12, 1:45).</p>
+</li>
+<li class="flex items-start gap-3 pb-3 border-b border-white/5 last:border-0 last:pb-0">
+<span class="material-symbols-outlined text-tertiary text-sm mt-0.5">priority_high</span>
+<p class="text-body-md font-body-md text-on-surface-variant">Rushed conclusion; WPM spiked to 160 in the final 20 seconds.</p>
+</li>
+<li class="flex items-start gap-3 pb-3 border-b border-white/5 last:border-0 last:pb-0">
+<span class="material-symbols-outlined text-tertiary text-sm mt-0.5">priority_high</span>
+<p class="text-body-md font-body-md text-on-surface-variant">Lacked deliberate pausing after stating key metrics to let them sink in.</p>
+</li>
+</ul>
+</div>
+</div>
+<!-- Daily Drill Action Card -->
+<div class="bg-surface-container rounded-xl border border-white/10 relative overflow-hidden flex flex-col">
+<!-- Background image for premium feel -->
+<div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay" data-alt="A dark, moody, abstract technological background showing soft glowing soundwaves or data lines. High tech, premium corporate feel. Deep blues and blacks with subtle light accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMGnU0RFlmBfUJZ_4AW95m3_TReSDYnOiHfCANq2TOBkN7bbyQQowhUkZS5tItowoLfIZeRRNR9cWcwr1wZ0t_kKpEaLALdKZAGvcx6bGkxg--fgqGQBouiVTFkQhH5SN-izRW2jqV0tBUXezhWiHzZMomIo2qNO5PPVYvXBNGvJbfs19GRd_J9OlDlIUlnv8F9MsR6pERQd8L6u0zdiv5awjdap-AaIhNpB5QWlOOWDR_xVWPM5Sz8LYJaDaPo_2uYEKdwnaWMkY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-surface-container/90 to-transparent"></div>
+<div class="p-container-padding relative z-10 flex-1 flex flex-col">
+<div class="inline-block bg-primary/20 text-primary text-label-sm font-label-sm px-3 py-1 rounded-full border border-primary/30 w-fit mb-stack-md">Recommended Action</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-base">Daily Drill: The Elevator Pitch</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-stack-lg">
+                        Practice a 60-second summary without using a single filler word. The AI will immediately interrupt if a filler word is detected, forcing you to restart.
+                    </p>
+<div class="mt-auto bg-surface/50 backdrop-blur-sm rounded-lg p-stack-sm border border-white/5 mb-stack-md">
+<div class="flex justify-between items-center mb-1">
+<span class="text-label-sm font-label-sm text-outline">Estimated Time</span>
+<span class="text-label-sm font-label-sm text-on-surface">5 mins</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-outline">Target Metric</span>
+<span class="text-label-sm font-label-sm text-on-surface">Filler Words (0)</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded-lg hover:bg-primary-fixed transition-colors font-semibold shadow-[0_0_15px_rgba(77,163,255,0.2)]">
+                        Start Drill Now
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-low/80 dark:bg-surface-container-low/80 backdrop-blur-2xl fixed bottom-0 w-full z-50 rounded-t-xl border-t border-white/5 shadow-[0_-4px_24px_rgba(77,163,255,0.05)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pt-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors pb-2" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors pb-2" href="#">
+<span class="material-symbols-outlined mb-1">mic</span>
+<span class="text-label-sm font-label-sm">Record</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary-fixed-dim transition-colors pb-2" href="#">
+<span class="material-symbols-outlined mb-1">psychology</span>
+<span class="text-label-sm font-label-sm">Coach</span>
+</a>
+<!-- Active State for Stats/Analysis -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary bg-secondary-container/20 rounded-xl px-3 py-1 hover:text-primary-fixed-dim transition-colors active:scale-90 duration-150 ease-in-out mb-2" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="text-label-sm font-label-sm font-bold">Stats</span>
+</a>
+</nav>
+</body></html>
